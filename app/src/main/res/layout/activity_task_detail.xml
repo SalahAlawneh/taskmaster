@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TaskDetail">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:text="Task Title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="203dp"
+        android:layout_height="294dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nunc nisi, lobortis sollicitudin massa eu, vulputate varius enim. Nunc suscipit nec neque eu tincidunt. Praesent feugiat porttitor ex, nec tempor nisi convallis nec. Maecenas faucibus mattis dolor vel viverra. Fusce porta malesuada gravida. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam quis vestibulum elit, id imperdiet risus.
+
+Nam tincidunt dui ut augue suscipit ultrices. Nullam id tellus dictum, vestibulum dui vitae, tristique ligula. Quisque ut ultrices leo. Cras eget facilisis turpis, id semper sapien. Pellentesque ipsum ipsum, auctor at fermentum sed, porta ut lectus. Praesent mollis aliquet turpis nec faucibus. Mauris vitae mattis felis. Sed a nisl porttitor, blandit ipsum nec, vestibulum sapien. Nam ipsum lacus, suscipit in porta eu, interdum ultricies orci. Donec eleifend orci est, lacinia feugiat ipsum viverra nec. Donec rutrum justo pulvinar, fermentum justo in, eleifend ante. Ut nec eleifend purus, a auctor augue. Ut volutpat elementum sem, ac posuere massa pulvinar sed. Cras vitae tellus vel ipsum pharetra ultricies vel in neque. Morbi at metus mi. Sed vehicula nisl eros, non condimentum dui pharetra at.
+
+In id euismod arcu, eu porta ipsum. Suspendisse ultricies dignissim eros in fermentum. Aenean accumsan lacus quis mi tristique, vel ultrices augue auctor. Nulla leo dolor, vulputate ac sollicitudin ut, congue quis lacus. Phasellus a erat euismod augue pretium ullamcorper. Morbi aliquam aliquet augue, eu ultricies eros venenatis sed. Cras sed aliquet libero, a gravida orci. Fusce at nisl id nisl ultricies sollicitudin. Cras eu neque imperdiet, eleifend eros sit amet, auctor sem.
+
+Vestibulum sit amet ipsum iaculis, tempus nibh nec, rutrum purus. Sed fermentum urna nec consectetur rhoncus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec lacus ac dui vestibulum dictum non non ante. Ut aliquet tellus erat, dignissim molestie neque euismod non. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse ut nisl vitae velit lobortis suscipit non sit amet nisi. Nunc suscipit massa id tempus sagittis.
+
+Nullam purus eros, tincidunt at sodales sit amet, posuere at sapien. Maecenas eget volutpat dolor. Phasellus id quam et nisi pretium eleifend non non ligula. Suspendisse potenti. Curabitur eget orci ut metus lobortis tincidunt egestas vitae ante. Praesent gravida ex a nisi ullamcorper, in laoreet augue rutrum. Nulla convallis semper eleifend. Nunc vitae aliquam enim. Mauris porttitor sit amet erat vitae condimentum. Fusce sollicitudin dictum mi, quis cursus erat scelerisque tincidunt. Integer porta orci sit amet velit laoreet, at posuere lectus commodo. Maecenas eu enim non massa venenatis faucibus ut sit amet augue. " />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
