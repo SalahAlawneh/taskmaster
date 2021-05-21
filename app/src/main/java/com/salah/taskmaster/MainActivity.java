@@ -61,14 +61,52 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 SharedPreferences sharedPreferences1 = getSharedPreferences("myTask", MODE_PRIVATE);
                 String taskOne = "Workout";
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("taskOne", taskOne);
+                SharedPreferences.Editor editor = sharedPreferences1.edit();
+                editor.putString("task", taskOne);
                 editor.commit();
                 Toast.makeText(MainActivity.this, "data saved.", Toast.LENGTH_LONG).show();
                 Intent goToDetails = new Intent(MainActivity.this, TaskDetail.class);
                 startActivity(goToDetails);
 
             }
+
+
+        });
+
+        Button tasTwo = MainActivity.this.findViewById(R.id.button2);
+        tasTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences1 = getSharedPreferences("myTask", MODE_PRIVATE);
+                String taskTwo = "Study";
+                SharedPreferences.Editor editor = sharedPreferences1.edit();
+                editor.putString("task", taskTwo);
+                editor.commit();
+                Toast.makeText(MainActivity.this, "data saved.", Toast.LENGTH_LONG).show();
+                Intent goToDetails = new Intent(MainActivity.this, TaskDetail.class);
+                startActivity(goToDetails);
+
+            }
+
+
+        });
+
+        Button tasThree = MainActivity.this.findViewById(R.id.button4);
+        tasThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences1 = getSharedPreferences("myTask", MODE_PRIVATE);
+                String taskTwo = "Learn English";
+                SharedPreferences.Editor editor = sharedPreferences1.edit();
+                editor.putString("task", taskTwo);
+                editor.commit();
+                Toast.makeText(MainActivity.this, "data saved.", Toast.LENGTH_LONG).show();
+                Intent goToDetails = new Intent(MainActivity.this, TaskDetail.class);
+                startActivity(goToDetails);
+
+            }
+
+
         });
 
 

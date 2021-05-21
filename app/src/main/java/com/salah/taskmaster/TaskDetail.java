@@ -17,7 +17,7 @@ public class TaskDetail extends AppCompatActivity {
         TextView showTaskTitle;
         showTaskTitle = TaskDetail.this.findViewById(R.id.textView4);
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("myTask", MODE_PRIVATE);
-        String savedTask = sharedPreferences.getString("taskOne", "");
+        String savedTask = sharedPreferences.getString("task", "");
         showTaskTitle.setText(savedTask);
     }
 }
