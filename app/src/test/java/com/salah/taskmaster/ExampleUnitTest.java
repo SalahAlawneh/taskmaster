@@ -14,4 +14,16 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
+
+    @Test
+    public void taskInstancesTest() {
+        Task taskOne = new Task("Workout", "10 push ups", "complete");
+        assertEquals(taskOne.getTitle(), "Workout");
+        assertEquals(taskOne.getBody(), "10 push ups");
+        assertEquals(taskOne.getState(), "complete");
+
+
+    }
+
 }

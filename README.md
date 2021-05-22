@@ -25,3 +25,22 @@ following a screenshots for the three pages:
 - as you can see we shown the username, and there is a button for every task for the user, and when he hit one of them=> we will redirect him to deatail page and he will see at the top the task that saved in shared prefrence   
 ### task detail   
 ![](screenshots/27TaskDetail.jpeg)   
+***
+## Lab 27 "using Rescycler View for rendering lists"
+- in this lab i added two pages:
+   - task detail
+   - refacotred home page
+- added new class called Task which is have three properties:
+   - title
+   - body
+   - state
+- the tasks title hardcoded addition was implement
+- for the list i use Recycler view
+### new home page
+![](screenshots/28homePage.png)   
+- in this page you will see the Recyler View lists
+- when you hit on one of them you will see a message till you that you will go to the detail for this task
+### new task detail   
+![](screenshots/28taskDetail.png)   
+- you see here the title of the task and the detail for it "lorem ipsem"
+- the title was stored in shared prefrence
