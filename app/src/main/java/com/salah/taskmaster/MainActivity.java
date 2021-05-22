@@ -1,6 +1,8 @@
 package com.salah.taskmaster;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +14,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    RecyclerView recyclerView;
+    RecyclerAdapter adapter;
+    String tasksTitle[] = {"Workout", "Study", "Learn E"};
+
+    Task taskOne = new Task("Workout", "10 push ups", "complete");
+    Task taskTwo = new Task("Study", "Study Java", "assigned");
+    Task taskThree = new Task("Learn E", "listening and writing", "in progress");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,61 +65,65 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = getApplicationContext().getSharedPreferences("myUserPreferences", MODE_PRIVATE);
         String savedUsername = sharedPreferences.getString("settingUserName", "");
         username.setText(savedUsername + "'s tasks");
+//
+//        Button taskOne = MainActivity.this.findViewById(R.id.button);
+//        taskOne.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                SharedPreferences sharedPreferences1 = getSharedPreferences("myTask", MODE_PRIVATE);
+//                String taskOne = "Workout";
+//                SharedPreferences.Editor editor = sharedPreferences1.edit();
+//                editor.putString("task", taskOne);
+//                editor.commit();
+//                Toast.makeText(MainActivity.this, "data saved.", Toast.LENGTH_LONG).show();
+//                Intent goToDetails = new Intent(MainActivity.this, TaskDetail.class);
+//                startActivity(goToDetails);
+//
+//            }
+//
+//
+//        });
+//
+//        Button tasTwo = MainActivity.this.findViewById(R.id.button2);
+//        tasTwo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                SharedPreferences sharedPreferences1 = getSharedPreferences("myTask", MODE_PRIVATE);
+//                String taskTwo = "Study";
+//                SharedPreferences.Editor editor = sharedPreferences1.edit();
+//                editor.putString("task", taskTwo);
+//                editor.commit();
+//                Toast.makeText(MainActivity.this, "data saved.", Toast.LENGTH_LONG).show();
+//                Intent goToDetails = new Intent(MainActivity.this, TaskDetail.class);
+//                startActivity(goToDetails);
+//
+//            }
+//
+//
+//        });
+//
+//        Button tasThree = MainActivity.this.findViewById(R.id.button4);
+//        tasThree.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                SharedPreferences sharedPreferences1 = getSharedPreferences("myTask", MODE_PRIVATE);
+//                String taskTwo = "Learn English";
+//                SharedPreferences.Editor editor = sharedPreferences1.edit();
+//                editor.putString("task", taskTwo);
+//                editor.commit();
+//                Toast.makeText(MainActivity.this, "data saved.", Toast.LENGTH_LONG).show();
+//                Intent goToDetails = new Intent(MainActivity.this, TaskDetail.class);
+//                startActivity(goToDetails);
+//
+//            }
+//
+//
+//        });
 
-        Button taskOne = MainActivity.this.findViewById(R.id.button);
-        taskOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences sharedPreferences1 = getSharedPreferences("myTask", MODE_PRIVATE);
-                String taskOne = "Workout";
-                SharedPreferences.Editor editor = sharedPreferences1.edit();
-                editor.putString("task", taskOne);
-                editor.commit();
-                Toast.makeText(MainActivity.this, "data saved.", Toast.LENGTH_LONG).show();
-                Intent goToDetails = new Intent(MainActivity.this, TaskDetail.class);
-                startActivity(goToDetails);
-
-            }
-
-
-        });
-
-        Button tasTwo = MainActivity.this.findViewById(R.id.button2);
-        tasTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences sharedPreferences1 = getSharedPreferences("myTask", MODE_PRIVATE);
-                String taskTwo = "Study";
-                SharedPreferences.Editor editor = sharedPreferences1.edit();
-                editor.putString("task", taskTwo);
-                editor.commit();
-                Toast.makeText(MainActivity.this, "data saved.", Toast.LENGTH_LONG).show();
-                Intent goToDetails = new Intent(MainActivity.this, TaskDetail.class);
-                startActivity(goToDetails);
-
-            }
-
-
-        });
-
-        Button tasThree = MainActivity.this.findViewById(R.id.button4);
-        tasThree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences sharedPreferences1 = getSharedPreferences("myTask", MODE_PRIVATE);
-                String taskTwo = "Learn English";
-                SharedPreferences.Editor editor = sharedPreferences1.edit();
-                editor.putString("task", taskTwo);
-                editor.commit();
-                Toast.makeText(MainActivity.this, "data saved.", Toast.LENGTH_LONG).show();
-                Intent goToDetails = new Intent(MainActivity.this, TaskDetail.class);
-                startActivity(goToDetails);
-
-            }
-
-
-        });
-
+        recyclerView = findViewById(R.id.recylerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new RecyclerAdapter(this, tasksTitle);
+        recyclerView.setAdapter(adapter);
 
     }
 
