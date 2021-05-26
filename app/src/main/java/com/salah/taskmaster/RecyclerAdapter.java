@@ -37,12 +37,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences sharedPreferences = context.getSharedPreferences("myTask", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("task", data[position]);
-                editor.commit();
+//                SharedPreferences sharedPreferences = context.getSharedPreferences("myTask", Context.MODE_PRIVATE);
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.putString("task", data[position]);
+//                editor.commit();
                 Toast.makeText(context, "Going to ==>" + data[position], Toast.LENGTH_SHORT).show();
                 Intent goToDetail = new Intent(context, TaskDetail.class);
+                goToDetail.putExtra("detailTitle",data[position]);
                 context.startActivity(goToDetail);
             }
         });
