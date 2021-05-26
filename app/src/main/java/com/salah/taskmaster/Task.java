@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Entity(tableName = "task")
 public class Task implements Serializable {
     @PrimaryKey(autoGenerate = true)
-    private long id;
+    private int id;
     @ColumnInfo(name = "title")
     private String title;
     @ColumnInfo(name = "body")
@@ -17,7 +17,14 @@ public class Task implements Serializable {
     @ColumnInfo(name = "state")
     private String state;
 
-    public long getId() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Task() {
+    }
+
+    public int getId() {
         return id;
     }
 

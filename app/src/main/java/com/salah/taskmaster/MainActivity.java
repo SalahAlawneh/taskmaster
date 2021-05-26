@@ -13,15 +13,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     RecyclerAdapter adapter;
-    String tasksTitle[] = {"Workout", "Study", "Learn E"};
+    List<Task> tasks = new ArrayList<>();
+    LinearLayoutManager linearLayoutManager;
+    RoomDB database;
 
-    Task taskOne = new Task("Workout", "10 push ups", "complete");
-    Task taskTwo = new Task("Study", "Study Java", "assigned");
-    Task taskThree = new Task("Learn E", "listening and writing", "in progress");
+
+//    String tasksTitle[] = {"Workout", "Study", "Learn E"};
+//    Task taskOne = new Task("Workout", "10 push ups", "complete");
+//    Task taskTwo = new Task("Study", "Study Java", "assigned");
+//    Task taskThree = new Task("Learn E", "listening and writing", "in progress");
 
 
     @Override
@@ -67,6 +74,25 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String intentSavedName = intent.getStringExtra("Name");
         username.setText(intentSavedName);
+        recyclerView = findViewById(R.id.recylerview);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        adapter = new RecyclerAdapter(this, tasksTitle);
+//        recyclerView.setAdapter(adapter);
+
+
+        // initialize database
+        database = RoomDB.getInstance(this);
+        // store database value in data list
+        tasks = database.mainDao().getAll();
+//        database.mainDao().nukeTable();
+        // initialize linear layout manager
+        linearLayoutManager = new LinearLayoutManager((this));
+        // set layout manager
+        recyclerView.setLayoutManager(linearLayoutManager);
+        // initialize adapter
+        adapter = new RecyclerAdapter(tasks, MainActivity.this);
+        // Set adapter
+        recyclerView.setAdapter(adapter);
 //
 //        Button taskOne = MainActivity.this.findViewById(R.id.button);
 //        taskOne.setOnClickListener(new View.OnClickListener() {
@@ -122,10 +148,6 @@ public class MainActivity extends AppCompatActivity {
 //
 //        });
 
-        recyclerView = findViewById(R.id.recylerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new RecyclerAdapter(this, tasksTitle);
-        recyclerView.setAdapter(adapter);
 
     }
 
