@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class AddTask extends AppCompatActivity {
+    RoomDB database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +23,27 @@ public class AddTask extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         ((ActionBar) actionBar).setHomeAsUpIndicator(R.drawable.mybutton);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        database = RoomDB.getInstance(this);
+
         Button addTaskButton = AddTask.this.findViewById(R.id.button3);
         addTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(AddTask.this, "The Task added", Toast.LENGTH_LONG).show();
+                EditText titleEt = AddTask.this.findViewById(R.id.editTextTextPersonName);
+                EditText bodyEt = AddTask.this.findViewById(R.id.editTextTextPersonName2);
+                EditText stateEt = AddTask.this.findViewById(R.id.editTextTextPersonName3);
+                String sTitle = titleEt.getText().toString().trim();
+                String sBody = bodyEt.getText().toString().trim();
+                String sState = stateEt.getText().toString().trim();
+                Task data = new Task();
+                data.setTitle(sTitle);
+                data.setBody(sBody);
+                data.setState(sState);
+                database.mainDao().insert(data);
+                finish();
+
 
             }
         });
