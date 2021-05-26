@@ -1,9 +1,12 @@
 package com.salah.taskmaster;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 public class TaskDetail extends AppCompatActivity {
@@ -12,12 +15,22 @@ public class TaskDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_detail);
-        setTitle("Task Detail");
 
-        TextView showTaskTitle;
-        showTaskTitle = TaskDetail.this.findViewById(R.id.textView4);
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("myTask", MODE_PRIVATE);
         String savedTask = sharedPreferences.getString("task", "");
-        showTaskTitle.setText(savedTask);
+        setTitle(savedTask);
+
+        ActionBar actionBar = getSupportActionBar();
+        ((ActionBar) actionBar).setHomeAsUpIndicator(R.drawable.mybutton);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

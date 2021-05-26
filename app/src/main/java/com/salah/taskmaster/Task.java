@@ -1,9 +1,25 @@
 package com.salah.taskmaster;
 
-public class Task {
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import java.io.Serializable;
+
+@Entity(tableName = "task")
+public class Task implements Serializable {
+    @PrimaryKey(autoGenerate = true)
+    private long id;
+    @ColumnInfo(name = "title")
     private String title;
+    @ColumnInfo(name = "body")
     private String body;
+    @ColumnInfo(name = "state")
     private String state;
+
+    public long getId() {
+        return id;
+    }
 
     public Task(String title, String body, String state) {
         this.title = title;
