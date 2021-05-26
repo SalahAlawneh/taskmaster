@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         Button allTasksButt = MainActivity.this.findViewById(R.id.all_tasks_button);
         allTasksButt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,9 +61,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         username = MainActivity.this.findViewById(R.id.main_show_username);
-        sharedPreferences = getApplicationContext().getSharedPreferences("myUserPreferences", MODE_PRIVATE);
-        String savedUsername = sharedPreferences.getString("settingUserName", "");
-        username.setText(savedUsername + "'s tasks");
+//        sharedPreferences = getApplicationContext().getSharedPreferences("myUserPreferences", MODE_PRIVATE);
+//        String savedUsername = sharedPreferences.getString("settingUserName", "username");
+//        username.setText(savedUsername + "'s tasks");
+        Intent intent = getIntent();
+        String intentSavedName = intent.getStringExtra("Name");
+        username.setText(intentSavedName);
 //
 //        Button taskOne = MainActivity.this.findViewById(R.id.button);
 //        taskOne.setOnClickListener(new View.OnClickListener() {
@@ -126,5 +128,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
     }
+
 
 }
