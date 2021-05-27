@@ -56,3 +56,9 @@ following a screenshots for the three pages:
 ![](screenshots/29TaskDetail.png) 
 
 - in the comming labs we will use another type of databases
+## Lab 31 "Test using record test in Espresso"
+- i added three tests in this lab, one of them did'nt  work:
+1. ElementExistenceTest==> in this test i tested existence of elements in my activities, also test some text if really there the right one
+1. ChangeUsernameTest==> going to setting and add a username and make sure it's rendered in the main activity
+1. TryingToTestSavingInDBTest==> it's the one who didn't work, i think my laptop don't have the resources in order to do these sort of testing, every time i try to do it the test will force to stop. so if you try to test it, you will see it fail."I will manage to do it when i have an access to better laptop"
+
