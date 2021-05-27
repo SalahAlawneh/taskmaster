@@ -51,7 +51,8 @@ following a screenshots for the three pages:
    - rendering the tasks in the main activity using recycyler view
    - when you hit in any task you will go to task detail
    - in task detail you will see your task title, decription and it's state    
-
 ![](screenshots/29AddActivity.png)   
 ![](screenshots/29MainActivity.png) 
 ![](screenshots/29TaskDetail.png) 
+
+- in the comming labs we will use another type of databases
