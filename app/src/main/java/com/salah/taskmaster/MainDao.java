@@ -26,7 +26,7 @@ public interface MainDao {
     @Query("SELECT * FROM task")
     List<Task> getAll();
 
-    @Query("DELETE FROM task")
-    public void nukeTable();
+//    @Query("DELETE FROM task")
+//    public void nukeTable();
 
 }

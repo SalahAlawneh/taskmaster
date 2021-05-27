@@ -84,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
         database = RoomDB.getInstance(this);
         // store database value in data list
         tasks = database.mainDao().getAll();
-//        database.mainDao().nukeTable();
+        // in order to update the table
+//        database.mainDao().reset(tasks);
         // initialize linear layout manager
         linearLayoutManager = new LinearLayoutManager((this));
         // set layout manager

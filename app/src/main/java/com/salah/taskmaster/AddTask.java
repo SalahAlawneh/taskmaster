@@ -42,6 +42,8 @@ public class AddTask extends AppCompatActivity {
                 data.setBody(sBody);
                 data.setState(sState);
                 database.mainDao().insert(data);
+                Intent intent = new Intent();
+                startActivity(intent);
                 finish();
 
 

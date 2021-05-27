@@ -26,8 +26,8 @@ public class TaskDetail extends AppCompatActivity {
 //        String savedTask = sharedPreferences.getString("task", "");
         Intent intent = getIntent();
         String savedTask = intent.getStringExtra("detailTitle");
-       // int id = intent.getIntExtra("taskId",0);
-       // System.out.println(id);
+        int targetId = intent.getIntExtra("taskId",0)-1;
+        System.out.println(targetId);
         setTitle(savedTask);
 
         ActionBar actionBar = getSupportActionBar();
@@ -36,8 +36,8 @@ public class TaskDetail extends AppCompatActivity {
 
         database = RoomDB.getInstance(this);
         tasksList= database.mainDao().getAll();
-        String sBody = tasksList.get(0).getBody();
-        String sState = tasksList.get(0).getState();
+        String sBody = tasksList.get(targetId).getBody();
+        String sState = tasksList.get(targetId).getState();
         TextView bodyTv= TaskDetail.this.findViewById(R.id.detail_body);
         TextView stateTv= TaskDetail.this.findViewById(R.id.detail_state);
         bodyTv.setText(sBody);

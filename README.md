@@ -26,7 +26,7 @@ following a screenshots for the three pages:
 ### task detail   
 ![](screenshots/27TaskDetail.jpeg)   
 ***
-## Lab 27 "using Rescycler View for rendering lists"
+## Lab 28 "using Rescycler View for rendering lists"
 - in this lab i added two pages:
    - task detail
    - refacotred home page
@@ -44,3 +44,14 @@ following a screenshots for the three pages:
 ![](screenshots/28taskDetail.png)   
 - you see here the title of the task and the detail for it "lorem ipsem"
 - the title was stored in shared prefrence
+## Lab 29 "Use Room local database"
+- in this lab i added five features to my app:
+   - make my task class as an entity for the table in database called task
+   - adding form in adding task acivity in order to save in database
+   - rendering the tasks in the main activity using recycyler view
+   - when you hit in any task you will go to task detail
+   - in task detail you will see your task title, decription and it's state    
+
+![](screenshots/29AddActivity.png)   
+![](screenshots/29MainActivity.png) 
+![](screenshots/29TaskDetail.png) 
