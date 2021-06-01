@@ -7,16 +7,39 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.auth.AuthUserAttributeKey;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
+import com.amplifyframework.auth.options.AuthSignOutOptions;
+import com.amplifyframework.auth.options.AuthSignUpOptions;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.AWSDataStorePlugin;
+
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MainActivity extends AppCompatActivity {
+//    @Override
+//    protected void onStart()
+//    {
+//        super.onStart();
+//        try {
+//            Amplify.addPlugin(new AWSDataStorePlugin());
+//            Amplify.configure(getApplicationContext());
+//            Log.i("Tutorial", "Initialized Amplify");
+//        } catch (AmplifyException e) {
+//            Log.e("Tutorial", "Could not initialize Amplify", e);
+//        }
+//    }
+
 
     RecyclerView recyclerView;
     RecyclerAdapter adapter;
@@ -33,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         TextView username;
         SharedPreferences sharedPreferences;
 
@@ -148,6 +173,49 @@ public class MainActivity extends AppCompatActivity {
 //
 //
 //        });
+
+        try {
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.configure(getApplicationContext());
+            Log.i("Tutorial", "Initialized Amplify");
+        } catch (AmplifyException e) {
+            Log.e("Tutorial", "Could not initialize Amplify", e);
+        }
+//        Sign up ===================================================================
+        MainActivity.this.findViewById(R.id.sigup_button1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToSignup = new Intent(MainActivity.this, Signup.class);
+                startActivity(goToSignup);
+            }
+        });
+
+
+//        Login ===================================================================
+
+        MainActivity.this.findViewById(R.id.main_login).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToLogin = new Intent(MainActivity.this, Login.class);
+                startActivity(goToLogin);
+            }
+        });
+
+//        Sign out ===================================================================
+
+        MainActivity.this.findViewById(R.id.main_signout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("=====================================================");
+                System.out.println("singout done");
+                System.out.println("=====================================================");
+                Amplify.Auth.signOut(
+                        AuthSignOutOptions.builder().globalSignOut(true).build(),
+                        () -> Log.i("AuthQuickstart", "Signed out globally"),
+                        error -> Log.e("AuthQuickstart", error.toString())
+                );
+            }
+        });
 
 
     }
