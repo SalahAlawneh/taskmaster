@@ -62,3 +62,9 @@ following a screenshots for the three pages:
 1. ChangeUsernameTest==> going to setting and add a username and make sure it's rendered in the main activity
 1. TryingToTestSavingInDBTest==> it's the one who didn't work, i think my laptop don't have the resources in order to do these sort of testing, every time i try to do it the test will force to stop. so if you try to test it, you will see it fail."I will manage to do it when i have an access to better laptop"
 
+## Lab 36 "AWS-cognito"
+- in this lab i used cognito for authentication:
+1. added a signup page to add the the username, password and email==> and after that a code for activation will send to the email.
+1. after that i added a code activation activity to let the user enter the code.
+1. added a login page, in order to to login if you have an account after signup and activating the account
+1. adding a signout button to let you end the session.
