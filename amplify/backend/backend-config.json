@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "taskmasterb5d6a88f": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
