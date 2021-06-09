@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class TaskDetail extends AppCompatActivity {
 //        String savedTask = sharedPreferences.getString("task", "");
         Intent intent = getIntent();
         String savedTask = intent.getStringExtra("detailTitle");
-        int targetId = intent.getIntExtra("taskId",0)-1;
+        int targetId = intent.getIntExtra("taskId", 0) - 1;
         System.out.println(targetId);
         setTitle(savedTask);
 
@@ -35,13 +36,18 @@ public class TaskDetail extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         database = RoomDB.getInstance(this);
-        tasksList= database.mainDao().getAll();
+        tasksList = database.mainDao().getAll();
         String sBody = tasksList.get(targetId).getBody();
         String sState = tasksList.get(targetId).getState();
-        TextView bodyTv= TaskDetail.this.findViewById(R.id.detail_body);
-        TextView stateTv= TaskDetail.this.findViewById(R.id.detail_state);
+        String sCity = tasksList.get(targetId).getName_city();
+        System.out.println("DetailDetailDetailDetailDetailDetailDetailDetailDetailDetail");
+        System.out.println(sCity);
+        TextView bodyTv = TaskDetail.this.findViewById(R.id.detail_body);
+        TextView stateTv = TaskDetail.this.findViewById(R.id.detail_state);
         bodyTv.setText(sBody);
         stateTv.setText(sState);
+        TextView location = findViewById(R.id.textViewLocation);
+        location.setText(sCity);
 
 
     }

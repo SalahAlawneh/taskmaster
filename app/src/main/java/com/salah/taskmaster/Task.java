@@ -18,6 +18,16 @@ public class Task implements Serializable {
     private String state;
     @ColumnInfo(name = "fileKey")
     private String fileKey;
+    @ColumnInfo(name = "name_city")
+    private String name_city;
+
+    public String getName_city() {
+        return name_city;
+    }
+
+    public void setName_city(String name_city) {
+        this.name_city = name_city;
+    }
 
     public String getFileKey() {
         return fileKey;

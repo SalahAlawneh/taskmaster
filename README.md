@@ -77,3 +77,9 @@ following a screenshots for the three pages:
 ## Lab 38 "notification"
 - in this lab i used amplifier in order to send an message from the amplifire to device you can choose.
 - when i navigate from console in the amplifier and send an message to my application, a notification will send to users of the applications
+
+## Lab 42 "Location"
+- at first i get the latitude and langitude
+- after that i convert it to city name
+- when the user add the task the location will save in the database
+- when the user navigate to task detail he will see the lacation that saved in the place he saved the task in

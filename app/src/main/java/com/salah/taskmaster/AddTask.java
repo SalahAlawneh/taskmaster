@@ -1,12 +1,20 @@
 package com.salah.taskmaster;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -17,15 +25,24 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.amplifyframework.core.Amplify;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
+import java.util.Locale;
 
 public class AddTask extends AppCompatActivity {
+    private FusedLocationProviderClient fusedLocationClient;
     RoomDB database;
+    String name_City = "";
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +70,9 @@ public class AddTask extends AppCompatActivity {
                 data.setBody(sBody);
                 data.setState(sState);
                 data.setFileKey(myFile);
+                System.out.println("savename_Cityname_Cityname_Cityname_Cityname_Cityname_City");
+                System.out.println(name_City);
+                data.setName_city(name_City);
                 database.mainDao().insert(data);
                 Intent intent = new Intent();
                 startActivity(intent);
@@ -71,6 +91,33 @@ public class AddTask extends AppCompatActivity {
 
             }
         });
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            Log.i("Location service", "latitude is==>" + location.getLatitude());
+                            Log.i("Location service", "longitude is==>" + location.getLongitude());
+                            Geocoder geocoder = new Geocoder(AddTask.this, Locale.getDefault());
+                            try {
+                                List<Address> address = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 3);
+                                name_City = address.get(0).getCountryName();
+                                System.out.println("salahname_Cityname_Cityname_Cityname_Cityname_Cityname_Cityname_Cityname_Cityname_Cityname_Cityname_Cityname_Cityname_Cityname_Cityname_City");
+                                System.out.println(name_City);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }
+                });
     }
 
     String myFile = "";

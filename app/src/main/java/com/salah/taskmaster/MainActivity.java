@@ -1,12 +1,18 @@
 package com.salah.taskmaster;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,7 +24,10 @@ import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.auth.options.AuthSignOutOptions;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.jetbrains.annotations.NotNull;
@@ -30,19 +39,20 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
 
+
     RecyclerView recyclerView;
     RecyclerAdapter adapter;
     List<Task> tasks = new ArrayList<>();
     LinearLayoutManager linearLayoutManager;
     RoomDB database;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        com.google.android.gms.tasks.Task
         super.onCreate(savedInstanceState);
         super.onStart();
         setContentView(R.layout.activity_main);
-        System.out.println("salaha=====================================================================================================================================================");
 //        FirebaseMessaging.getInstance().getToken()
 //                .addOnCompleteListener(new OnCompleteListener<String>() {
 //                    @Override
@@ -174,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        System.out.println("salaha=====================================================================================================================================================");
+
 
     }
 
