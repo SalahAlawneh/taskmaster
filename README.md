@@ -68,3 +68,12 @@ following a screenshots for the three pages:
 1. after that i added a code activation activity to let the user enter the code.
 1. added a login page, in order to to login if you have an account after signup and activating the account
 1. adding a signout button to let you end the session.
+
+## Lab 37 "S3"
+- in this lab created an upload button, to add an file from my divice to the aws using S3
+- the the file will saved in the database
+- i did'nt finish the part to download the file
+
+## Lab 38 "notification"
+- in this lab i used amplifier in order to send an message from the amplifire to device you can choose.
+- when i navigate from console in the amplifier and send an message to my application, a notification will send to users of the applications

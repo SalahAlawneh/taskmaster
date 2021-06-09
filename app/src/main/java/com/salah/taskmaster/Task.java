@@ -16,6 +16,16 @@ public class Task implements Serializable {
     private String body;
     @ColumnInfo(name = "state")
     private String state;
+    @ColumnInfo(name = "fileKey")
+    private String fileKey;
+
+    public String getFileKey() {
+        return fileKey;
+    }
+
+    public void setFileKey(String fileKey) {
+        this.fileKey = fileKey;
+    }
 
     public void setId(int id) {
         this.id = id;
