@@ -1,5 +1,6 @@
 package com.salah.taskmaster;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,35 +11,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.amplifyframework.AmplifyException;
-import com.amplifyframework.auth.AuthUserAttributeKey;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.auth.options.AuthSignOutOptions;
-import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.AWSDataStorePlugin;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-//    @Override
-//    protected void onStart()
-//    {
-//        super.onStart();
-//        try {
-//            Amplify.addPlugin(new AWSDataStorePlugin());
-//            Amplify.configure(getApplicationContext());
-//            Log.i("Tutorial", "Initialized Amplify");
-//        } catch (AmplifyException e) {
-//            Log.e("Tutorial", "Could not initialize Amplify", e);
-//        }
-//    }
 
 
     RecyclerView recyclerView;
@@ -47,22 +35,50 @@ public class MainActivity extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
     RoomDB database;
 
-
-//    String tasksTitle[] = {"Workout", "Study", "Learn E"};
-//    Task taskOne = new Task("Workout", "10 push ups", "complete");
-//    Task taskTwo = new Task("Study", "Study Java", "assigned");
-//    Task taskThree = new Task("Learn E", "listening and writing", "in progress");
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+//        com.google.android.gms.tasks.Task
+        super.onCreate(savedInstanceState);
+        super.onStart();
+        setContentView(R.layout.activity_main);
+        System.out.println("salaha=====================================================================================================================================================");
+//        FirebaseMessaging.getInstance().getToken()
+//                .addOnCompleteListener(new OnCompleteListener<String>() {
+//                    @Override
+//                    public void onComplete(@NonNull com.google.android.gms.tasks.Task<String> task) {
+//                        System.out.println("inner=====================================================================================================================================================");
+//                        System.out.println(task);
+//                        if (!task.isSuccessful()) {
+//                            System.out.println("راسب=====================================================================================================================================================");
+//
+//                            Log.w("this is my tag", "Fetching FCM registration token failed", task.getException());
+//                            return;
+//                        }
+//                        System.out.println("ناجح=====================================================================================================================================================");
+//
+//                        // Get new FCM registration token
+//                        String token = task.getResult();
+//                        // Log and toast
+//                        Log.d("token", token);
+//                    }
+//                });
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@androidx.annotation.NonNull @NotNull com.google.android.gms.tasks.Task task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("TAG salah", "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+                        String token = (String) task.getResult();
+                        Log.d("token", token);
+                    }
+                });
+        System.out.println("salaha=====================================================================================================================================================");
 
         TextView username;
         SharedPreferences sharedPreferences;
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         Button addTaskButt = MainActivity.this.findViewById(R.id.add_task_button);
         addTaskButt.setOnClickListener(new View.OnClickListener() {
@@ -93,16 +109,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         username = MainActivity.this.findViewById(R.id.main_show_username);
-//        sharedPreferences = getApplicationContext().getSharedPreferences("myUserPreferences", MODE_PRIVATE);
-//        String savedUsername = sharedPreferences.getString("settingUserName", "username");
-//        username.setText(savedUsername + "'s tasks");
+
         Intent intent = getIntent();
         String intentSavedName = intent.getStringExtra("Name");
         username.setText(intentSavedName);
         recyclerView = findViewById(R.id.recylerview);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        adapter = new RecyclerAdapter(this, tasksTitle);
-//        recyclerView.setAdapter(adapter);
 
 
         // initialize database
@@ -119,68 +130,15 @@ public class MainActivity extends AppCompatActivity {
         adapter = new RecyclerAdapter(tasks, MainActivity.this);
         // Set adapter
         recyclerView.setAdapter(adapter);
-//
-//        Button taskOne = MainActivity.this.findViewById(R.id.button);
-//        taskOne.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                SharedPreferences sharedPreferences1 = getSharedPreferences("myTask", MODE_PRIVATE);
-//                String taskOne = "Workout";
-//                SharedPreferences.Editor editor = sharedPreferences1.edit();
-//                editor.putString("task", taskOne);
-//                editor.commit();
-//                Toast.makeText(MainActivity.this, "data saved.", Toast.LENGTH_LONG).show();
-//                Intent goToDetails = new Intent(MainActivity.this, TaskDetail.class);
-//                startActivity(goToDetails);
-//
-//            }
-//
-//
-//        });
-//
-//        Button tasTwo = MainActivity.this.findViewById(R.id.button2);
-//        tasTwo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                SharedPreferences sharedPreferences1 = getSharedPreferences("myTask", MODE_PRIVATE);
-//                String taskTwo = "Study";
-//                SharedPreferences.Editor editor = sharedPreferences1.edit();
-//                editor.putString("task", taskTwo);
-//                editor.commit();
-//                Toast.makeText(MainActivity.this, "data saved.", Toast.LENGTH_LONG).show();
-//                Intent goToDetails = new Intent(MainActivity.this, TaskDetail.class);
-//                startActivity(goToDetails);
-//
-//            }
-//
-//
-//        });
-//
-//        Button tasThree = MainActivity.this.findViewById(R.id.button4);
-//        tasThree.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                SharedPreferences sharedPreferences1 = getSharedPreferences("myTask", MODE_PRIVATE);
-//                String taskTwo = "Learn English";
-//                SharedPreferences.Editor editor = sharedPreferences1.edit();
-//                editor.putString("task", taskTwo);
-//                editor.commit();
-//                Toast.makeText(MainActivity.this, "data saved.", Toast.LENGTH_LONG).show();
-//                Intent goToDetails = new Intent(MainActivity.this, TaskDetail.class);
-//                startActivity(goToDetails);
-//
-//            }
-//
-//
-//        });
 
-        try {
-            Amplify.addPlugin(new AWSCognitoAuthPlugin());
-            Amplify.configure(getApplicationContext());
-            Log.i("Tutorial", "Initialized Amplify");
-        } catch (AmplifyException e) {
-            Log.e("Tutorial", "Could not initialize Amplify", e);
-        }
+
+//        try {
+//            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+//            Amplify.configure(getApplicationContext());
+//            Log.i("Tutorial", "Initialized Amplify");
+//        } catch (AmplifyException e) {
+//            Log.e("Tutorial", "Could not initialize Amplify", e);
+//        }
 //        Sign up ===================================================================
         MainActivity.this.findViewById(R.id.sigup_button1).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -206,9 +164,6 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.this.findViewById(R.id.main_signout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("=====================================================");
-                System.out.println("singout done");
-                System.out.println("=====================================================");
                 Amplify.Auth.signOut(
                         AuthSignOutOptions.builder().globalSignOut(true).build(),
                         () -> Log.i("AuthQuickstart", "Signed out globally"),
@@ -217,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        System.out.println("salaha=====================================================================================================================================================");
 
     }
 
