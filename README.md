@@ -78,6 +78,11 @@ following a screenshots for the three pages:
 - in this lab i used amplifier in order to send an message from the amplifire to device you can choose.
 - when i navigate from console in the amplifier and send an message to my application, a notification will send to users of the applications
 
+## Lab 41 "Filter Intent"
+- in this lab i added something to make my application accessed by another application
+- when the user do a share from another place, my task master will be one of the application will do the sharing
+- when the user do the share he will navigate to the add task
+
 ## Lab 42 "Location"
 - at first i get the latitude and langitude
 - after that i convert it to city name
