@@ -118,6 +118,35 @@ public class AddTask extends AppCompatActivity {
                         }
                     }
                 });
+
+        Intent intent = getIntent();
+        Uri uploadedImage = intent.getData();
+        if (uploadedImage != null) {
+            myFile = "salah";
+            File file = new File(getApplicationContext().getFilesDir(), "uploads");
+
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(uploadedImage);
+                try {
+                    OutputStream out = new FileOutputStream(file);
+                    try {
+                        byte[] buf = new byte[1024];
+                        int len;
+                        while ((len = inputStream.read(buf)) > 0) {
+                            out.write(buf, 0, len);
+                        }
+                        uploadFile(file);
+                    } finally {
+                        out.close();
+                    }
+                } finally {
+                    inputStream.close();
+                }
+            } catch (Exception ex) {
+
+            }
+
+        }
     }
 
     String myFile = "";
@@ -129,8 +158,6 @@ public class AddTask extends AppCompatActivity {
             File file = new File(getApplicationContext().getFilesDir(), "uploads");
             if (resultCode == RESULT_OK) {
                 myFile = "start";
-                Uri selectedImage = data.getData();
-                String[] filePathColumn = {MediaStore.Images.Media.DATA};
             }
             try {
                 InputStream inputStream = getContentResolver().openInputStream(data.getData());
